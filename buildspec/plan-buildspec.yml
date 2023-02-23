@@ -2,9 +2,12 @@ version: 0.2
 phases:
   pre_build:
     commands:
+    # running commands
       - terraform init
+    # validate the status
       - terraform validate
   
   build:
     commands:
+    # Plan the whole infrastructure
       - terraform plan
