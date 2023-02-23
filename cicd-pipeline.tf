@@ -72,7 +72,7 @@ resource "aws_codepipeline" "cicd_pipeline" {
             configuration = {
                 FullRepositoryId = "aws-cicd-pipeline-using-terraform"
                 # Getting error here, even if defined Branch = main
-                BranchName   = "master"
+                BranchName   = "main"
                 ConnectionArn = var.codestar_connector_credentials
                 OutputArtifactFormat = "CODE_ZIP"
             }
