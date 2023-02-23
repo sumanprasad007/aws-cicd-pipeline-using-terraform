@@ -10,7 +10,8 @@ resource "aws_codebuild_project" "tf-plan" {
 # Environment creation - using docker image of terraform of linux
   environment {
     compute_type                = "BUILD_GENERAL1_SMALL"
-    image                       = "hashicorp/terraform:0.14.3"
+    # image                       = "hashicorp/terraform:0.14.3"
+    image                       = "hashicorp/terraform:1.3.8"
     type                        = "LINUX_CONTAINER"
     image_pull_credentials_type = "SERVICE_ROLE"
     # providing the image_pull_credentials_type
@@ -70,7 +71,8 @@ resource "aws_codepipeline" "cicd_pipeline" {
             output_artifacts = ["tf-code"]
             configuration = {
                 FullRepositoryId = "aws-cicd-pipeline-using-terraform"
-                BranchName   = "main"
+                # Getting error here, even if defined Branch = main
+                BranchName   = "master"
                 ConnectionArn = var.codestar_connector_credentials
                 OutputArtifactFormat = "CODE_ZIP"
             }
